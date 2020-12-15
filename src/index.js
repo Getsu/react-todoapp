@@ -1,17 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import TodoApp from './App';
+
+
+class HelloWorld extends React.Component {
+  render() {
+    return(
+      <div>
+        HelloWorld
+      </div>
+    );
+  }
+}
+
+class CountApp extends Component {
+  constructor() {
+    super()
+    this.state = {
+      count: 0,
+    }
+  }
+
+  plus() {
+    this.setState({count: this.state.count + 1})
+  }
+
+  minus() {
+    this.setState({count: this.state.count - 1})
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>カウンターApp</h1>
+        <p>{this.state.count}</p>
+        <div>
+          <button onClick={() => this.plus()}>+</button>
+          <button onClick={() => this.minus()}>-</button>
+        </div>
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  // <HelloWorld />, //HellpWorldのコンポーネントを
+  // <CountApp />,
+  <TodoApp />,
+  document.getElementById('root') // id='root'の要素にrenderする
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

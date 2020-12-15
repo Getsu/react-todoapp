@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class TodoApp extends Component {
+  constructor () {
+    super ()
+    this.state = {
+      todoList: [],
+      value: "",
+    }
+  }
+  onChange(e) {
+    this.setState({value: e.target.value})
+  }
+
+  add () {
+    // console.log("onClick")
+    this.setState({
+      todoList: this.state.todoList.concat(this.state.value),
+      value: "",
+    })
+  }
+
+  render() {
+    // console.log(this.state.todoList);\
+    const todoListNode = this.state.todoList.map((todo, idx) => {
+      return <li key={idx}>{todo}</li>
+    })
+    return (
+      <div>
+        <h1>TODO APP</h1>
+        <div>
+          <input
+            type="text"
+            value={this.state.value}
+            onChange={e => this.onChange(e)}
+          />
+        </div>
+        <button onClick={() => this.add()}>追加</button>
+        <ul>
+          {todoListNode}
+        </ul>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default TodoApp;
