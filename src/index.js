@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TodoApp from './App';
+import App from './App';
 
 
 class HelloWorld extends React.Component {
@@ -47,7 +47,7 @@ class CountApp extends Component {
 ReactDOM.render(
   // <HelloWorld />, //HellpWorldのコンポーネントを
   // <CountApp />,
-  <TodoApp />,
+  <App />,
   document.getElementById('root') // id='root'の要素にrenderする
 );
 
