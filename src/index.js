@@ -45,7 +45,7 @@ class CountApp extends Component {
 }
 
 ReactDOM.render(
-  // <HelloWorld />, //HellpWorldのコンポーネントを
+  // <HelloWorld />, //HelloWorldのコンポーネントを
   // <CountApp />,
   <App />,
   document.getElementById('root') // id='root'の要素にrenderする

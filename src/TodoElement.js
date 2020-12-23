@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 
-// const TodoElemet = (props) => {
+// const TodoElement = (props) => {
 //   return(
 //     <li>
 //       {props.content}

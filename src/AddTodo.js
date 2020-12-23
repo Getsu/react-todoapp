@@ -1,5 +1,5 @@
 
-import React, { Compornemt} from "react";
+import React from "react";
 
 class AddTodo extends React.Component {
 

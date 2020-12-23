@@ -11,8 +11,8 @@ class App extends Component {
       value: "",
     }
   }
-  onChange(keyvalue) {
-    this.setState(keyvalue)
+  onChange(keyValue) {
+    this.setState(keyValue)
   }
 
   add (todoElement) {
@@ -22,7 +22,7 @@ class App extends Component {
     });
   }
 
-  handleDlete(id) {
+  handleDelete(id) {
     let todoList = this.state.todoList.concat();
     let index = 0;
     todoList.map((element, idx) => {
@@ -41,7 +41,7 @@ class App extends Component {
   //       <TodoElement
   //         element={element}
   //         key={element.id}
-  //         onDelete={() => this.handleDlete()}
+  //         onDelete={() => this.handleDelete()}
   //       />
   //     );
   //   });
@@ -75,7 +75,7 @@ class App extends Component {
             <TodoElement
               key={element.id}
               element={element}
-              onDelete={id => this.handleDlete(id)}
+              onDelete={id => this.handleDelete(id)}
               {...this.state}
             />
           ))}
