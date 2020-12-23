@@ -23,15 +23,17 @@ class App extends Component {
   }
 
   handleDelete(id) {
-    let todoList = this.state.todoList.concat();
+    const todoList = [...this.state.todoList];
     let index = 0;
-    todoList.map((element, idx) => {
-      if (element.id == id) {
-        index = idx
-      }
-    })
+    const isSameId = (element) => element.id == id;
+    index = todoList.findIndex(isSameId);
+    // todoList.map((element, idx) => {
+    //   if (element.id == id) {
+    //     index = idx
+    //   }
+    // })
     todoList.splice(index, 1)
-    this.setState({todoList: todoList})
+    this.setState({ todoList });
   }
 
   // render() {
