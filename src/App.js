@@ -1,8 +1,85 @@
-import React, { Component } from "react";
-import TodoElement from './TodoElement';
-import AddTodo from './AddTodo';
+import React, { useState, useEffect } from "react";
+// import { useElement } from './useElement';
+// import { useAdder } from './useAdder';
 
-class App extends Component {
+export const App =  () => {
+  const [todoList, setTodoList] = useState([]);
+  const [value, setValue] = useState("");
+
+  // const [data, setData] = useState("");
+  // useEffect(() => {
+  //   const data = fetch("http://example.com/api/user")
+  //   setData(data);
+  // },[])
+
+  useEffect(() => {
+    fetch("./test.json")
+      .then( res => res.json() )
+      .then( res => {
+        console.log("res: ", {res});
+        setTodoList(res.data);
+      });
+  }, [])
+
+  const onChange = (keyValue) => {
+    setValue(keyValue);
+    // console.log('追加： ', {value})
+  };
+
+  const add = (todoElement) => {
+    setTodoList (todoList.concat(todoElement));
+    setValue ("");
+  };
+
+  const handleDelete = (id) => {
+    const todoList = [...this.todoList];
+    const isSameId = (element) => element.id === id;
+    const index = todoList.findIndex(isSameId);
+
+    todoList.splice(index, 1);
+    setTodoList (todoList);
+  };
+  console.log("value: ", value);
+  // useAdder();
+
+  return (
+    <div>
+      <h1>TODO App</h1>
+      <ul>
+        <li>
+          {todoList.map(
+            (value) => {
+              return <li key={value.id}>{value.text}</li>
+            }
+          )}
+        </li>
+      </ul>
+      {
+      /* <useAdder
+        onChange={keyValue => onChange(keyValue)}
+        add={todoElement => add(todoElement)}
+      />
+      */}
+      {/*
+      <ul>
+        {todoList.map(element =>(
+          <useElement
+            key={element.id}
+            element={element}
+            onDelete={id => handleDelete(id)}
+          />
+        ))}
+      </ul>
+      */}
+    </div>
+    // useAdder()
+  );
+
+}
+
+/*
+  class表記
+  class App extends Component {
   constructor () {
     super ();
     this.state = {
@@ -24,43 +101,13 @@ class App extends Component {
 
   handleDelete(id) {
     const todoList = [...this.state.todoList];
-    let index = 0;
     const isSameId = (element) => element.id == id;
-    index = todoList.findIndex(isSameId);
-    // todoList.map((element, idx) => {
-    //   if (element.id == id) {
-    //     index = idx
-    //   }
-    // })
+    const index = todoList.findIndex(isSameId);
+
     todoList.splice(index, 1)
     this.setState({ todoList });
   }
 
-  // render() {
-  //   // console.log(this.state.todoList.map(element));
-  //   const todoListNode = this.state.todoList.map(element => {
-  //     return (
-  //       <TodoElement
-  //         element={element}
-  //         key={element.id}
-  //         onDelete={() => this.handleDelete()}
-  //       />
-  //     );
-  //   });
-  //   return (
-  //     <div>
-  //       <h1>TODO APP</h1>
-  //       <AddTodo
-  //         {...this.state}
-  //         onChange={e => this.onChange(e)}
-  //         add={() => this.add()}
-  //       />
-  //       <ul>
-  //         {todoListNode}
-  //       </ul>
-  //     </div>
-  //   );
-  // }
 
   render() {
     const { todoList } = this.state;
@@ -74,7 +121,7 @@ class App extends Component {
         />
         <ul>
           {todoList.map(element =>(
-            <TodoElement
+            <useElement
               key={element.id}
               element={element}
               onDelete={id => this.handleDelete(id)}
@@ -85,6 +132,6 @@ class App extends Component {
       </div>
     );
   }
-}
+} */
 
-export default App;
+// export default App;
