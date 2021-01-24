@@ -1,11 +1,19 @@
 
 import React from "react";
+import { ListValue } from "../Todo/Types";
 
 type Props = {
-  key: number;
-  text: string;
+  item: ListValue;
+  handleDelete: (value: ListValue) => void;
 }
 
-export const TodoItem: React.FC<Props> = (value: {key: number, text: string}): JSX.Element => {
-  return <li>{value.text}</li>;
+export const TodoItem: React.FC<Props> = ({item, handleDelete}): JSX.Element => {
+  return (
+    <li>
+      <span>{item.text}</span>
+      <button
+        onClick={() => handleDelete(item)}
+        className="button_delete">削除</button>
+    </li>
+  );
 };

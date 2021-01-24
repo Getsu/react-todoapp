@@ -22,7 +22,7 @@ export const ItemInput: React.FC<Props> = ({ setTodoList, todoList }) => {
       text: inputValue
     }
 
-    setTodoList([newItem, ...todoList]);
+    setTodoList([...todoList, newItem]);
     setInputValue("");
   }
 
@@ -31,7 +31,7 @@ export const ItemInput: React.FC<Props> = ({ setTodoList, todoList }) => {
 
     <div className="inputForm">
       <input
-        type="tet"
+        type="text"
         className="input"
         value={inputValue}
         onChange={handleInputChange}

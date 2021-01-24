@@ -9,11 +9,21 @@ type Props = {
 
 export const TodoList: React.FC<Props> = ({ todoList, setTodoList }): JSX.Element => {
 
+  const handleDelete = (item: ListValue) => {
+    setTodoList(prev => prev.filter(t =>
+      t.id !== item.id
+    ));
+  }
+
   return (
     <ul>
       {
         todoList.map((value: ListValue) => {
-          return <TodoItem key={value.id} text={value.text} />;
+          return <TodoItem
+            key={value.id}
+            item={value}
+            handleDelete={handleDelete}
+          />;
         })}
     </ul>
   )
