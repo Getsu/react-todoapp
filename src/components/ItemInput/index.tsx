@@ -1,34 +1,22 @@
 import React, { useState } from "react";
-import { ListValue } from "../Todo/Types";
 
 type Props = {
-  setTodoList: React.Dispatch<React.SetStateAction<ListValue[]>>
-  todoList: ListValue[];
-}
+  func: (inputValue: string) => void;
+};
 
-export const ItemInput: React.FC<Props> = ({ setTodoList, todoList }) => {
+export const ItemInput: React.FC<Props> = (props) => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [count, setCount] = useState<number>(todoList.length + 1);
 
-  const handleInputChange: any = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
   const handleAdd = () => {
-    setCount(count + 1);
-
-    const newItem: ListValue = {
-      id: count,
-      text: inputValue
-    }
-
-    setTodoList([...todoList, newItem]);
+    props.func(inputValue);
     setInputValue("");
-  }
-
+  };
 
   return (
-
     <div className="inputForm">
       <input
         type="text"
@@ -36,11 +24,9 @@ export const ItemInput: React.FC<Props> = ({ setTodoList, todoList }) => {
         value={inputValue}
         onChange={handleInputChange}
       />
-      <button
-        onClick={handleAdd}
-        className="button_add">追加</button>
+      <button onClick={handleAdd} className="button_add">
+        追加
+      </button>
     </div>
-
-  )
-
+  );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { TodoItem } from "../TodoItem";
-import { ListValue } from "../Todo/Types";
+import { ListValue } from "../Todo/Types"
+
 
 type Props = {
   todoList: ListValue[];

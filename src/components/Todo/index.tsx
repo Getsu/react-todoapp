@@ -1,24 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { ListValue } from "./Types";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { todoListSelector } from "../../redux/todo/selectors";
+import { todoActions } from "../../redux/todo";
 import { TodoList } from "../TodoList";
 import { ItemInput } from "../ItemInput";
 
 export const Todo: React.FC = (): JSX.Element => {
-
-  const [todoList, setTodoList] = useState<ListValue[]>([]);
-  // const [value, setValue] = useState<string>("");
-
-  // const _array1: [number, string, boolean] = [1, "abc", true];
-  // const _array2: Array<number> = [1, 2, 3];
-  // const _array3: number[] = [1, 2, 3];
+  const todoList = useSelector(todoListSelector);
+  const dispatch = useDispatch();
 
   useEffect((): void => {
     fetch("./test.json")
-      .then((res): any => res.json())
-      .then((res): any => {
-        setTodoList(res.data);
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch(
+          todoActions.fetchedTodo({
+            todoList: res.data,
+          })
+        );
       });
+    // eslint-disable-next-line
   }, []);
+
+  const callAddTodo = (inputValue: string) => {
+    dispatch(todoActions.addTodo({ inputItem: inputValue }));
+  }
 
   return (
     <div>
@@ -28,10 +35,8 @@ export const Todo: React.FC = (): JSX.Element => {
           return <TodoItem key={value.id} text={value.text} />;
         })}
       </ul> */}
-      <ItemInput setTodoList={setTodoList} todoList={todoList} />;
-      <TodoList todoList={todoList} setTodoList={setTodoList} />;
+      <ItemInput func={callAddTodo} />;
+      <TodoList todoList={todoList} setTodoList={() => { }} />;
     </div>
   );
 };
-
-
