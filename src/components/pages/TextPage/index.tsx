@@ -1,4 +1,5 @@
 import React from "react";
+import { Notes } from "../../organisms/Notes";
 
 
 export const TextPage: React.FC = () => {
@@ -6,7 +7,7 @@ export const TextPage: React.FC = () => {
     <div>
       <article>
         <h2>TextPage</h2>
-        <p>Textarea</p>
+        <Notes></Notes>
       </article>
     </div>
   );
