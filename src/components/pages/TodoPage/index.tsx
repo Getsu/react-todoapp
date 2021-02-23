@@ -5,6 +5,7 @@ import { todoListSelector } from "../../../redux/todo/selectors";
 import { todoActions } from "../../../redux/todo";
 import { TodoList } from "../../organisms/TodoList";
 import { ItemInput } from "../../organisms/ItemInput";
+import { Transition } from "../../organisms/Transition";
 
 export const TodoPage: React.FC = (): JSX.Element => {
   const todoList = useSelector(todoListSelector);
@@ -34,6 +35,7 @@ export const TodoPage: React.FC = (): JSX.Element => {
   return (
     <div>
       <h1>TODO App</h1>
+      <Transition />
       <ItemInput func={callAddTodo} />;
       {todoList.length > 0 ? (
         <TodoList todoList={todoList} deleteTodo={callDeleteTodo} />

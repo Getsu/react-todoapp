@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // State
 type State = {
-  sentence: Array<string>;
+  sentence: string;
 };
 
 const initialState: State = {
-  sentence: [],
+  sentence: "",
 };
 
-type UpdateNotes = PayloadAction<{ newSentence: Array<string> }>;
+type UpdateNotes = PayloadAction<{ newSentence: string }>;
 
 // Reducer
 const notes = createSlice({
