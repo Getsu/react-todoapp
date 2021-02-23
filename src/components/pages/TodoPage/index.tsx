@@ -38,8 +38,8 @@ export const TodoPage: React.FC = (): JSX.Element => {
       {todoList.length > 0 ? (
         <TodoList todoList={todoList} deleteTodo={callDeleteTodo} />
       ) : (
-        <div>データがありません</div>
-      )}
+          <div>データがありません</div>
+        )}
     </div>
   );
 };
