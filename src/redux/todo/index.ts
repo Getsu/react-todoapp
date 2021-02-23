@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TodoList } from "../../components/TodoList";
+import { TodoList } from "../../components/organisms/TodoList";
 
 // State
 type Todo = {
@@ -19,6 +19,7 @@ const initialState: State = {
 
 type FetchedTodo = PayloadAction<{ todoList: Array<Todo> }>;
 type AddTodo = PayloadAction<{ inputItem: string }>;
+type DeleteTodo = PayloadAction<{ deleteID: number }>;
 
 // Reducer
 const todo = createSlice({
@@ -41,6 +42,12 @@ const todo = createSlice({
         count: newCount,
       };
     },
+    deleteTodo: (state, { payload }: DeleteTodo): State => {
+      return {
+        ...state,
+        todoList: state.todoList.filter(t => t.id !== payload.deleteID),
+      }
+    }
   },
 });
 
