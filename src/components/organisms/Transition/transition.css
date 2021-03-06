@@ -1,0 +1,12 @@
+.transition {
+  pointerEvents: "none";
+  backgroundColor: "#ccc";
+}
+
+/* .hello {
+  color: blue;
+  background: #aaccff;
+  padding: 0.5em;
+  font-weight: bolder;
+  border-radius: 0.5em;
+} */

@@ -17,7 +17,7 @@ export const NotePage: React.FC = () => {
       <article>
         <h2>Notes</h2>
         <Transition />
-        <Notes notes={notes} func={callUpdateNotes} />
+        <Notes notes={notes} onChange={callUpdateNotes} />
       </article>
     </div>
   );
